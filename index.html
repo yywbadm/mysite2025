@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呱呱統治宇宙🐸</title>
+    <meta name="description" content="來自台灣的國中生">
+    <meta property="og:title" content="呱呱統治宇宙🐸" />
+    <meta property="og:image" content="/img/avatar.jpg" />
+    <meta property="og:description" content="來自台灣的國中生" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $.fn.snow = function (options) {
+                var $flake = $('<div id="snowbox" />').css({ 'position': 'absolute', 'z-index': '9999', 'top': '-50px' }).html('&#10052;'),
+                    documentHeight = $(document).height(),
+                    documentWidth = $(document).width(),
+                    defaults = {
+                        minSize: 10,
+                        maxSize: 20,
+                        newOn: 1000,
+                        flakeColor: "#AFDAEF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
+                    },
+                    options = $.extend({}, defaults, options);
+                var interval = setInterval(function () {
+                    var startPositionLeft = Math.random() * documentWidth - 100,
+                        startOpacity = 0.5 + Math.random(),
+                        sizeFlake = options.minSize + Math.random() * options.maxSize,
+                        endPositionTop = documentHeight - 200,
+                        endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
+                        durationFall = documentHeight * 10 + Math.random() * 5000;
+                    $flake.clone().appendTo('body').css({
+                        left: startPositionLeft,
+                        opacity: startOpacity,
+                        'font-size': sizeFlake,
+                        color: options.flakeColor
+                    }).animate({
+                        top: endPositionTop,
+                        left: endPositionLeft,
+                        opacity: 0.2
+                    }, durationFall, 'linear', function () {
+                        $(this).remove()
+                    });
+                }, options.newOn);
+            };
+        })(jQuery);
+        $(function () {
+            $.fn.snow({
+                minSize: 5, /* 定義雪花最小尺寸 */
+                maxSize: 50,/* 定義雪花最大尺寸 */
+                newOn: 200  /* 定義密集程度，數字越小越密集 */
+            });
+        });
+    </script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #424549;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a {
+            color: #676767;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cover-photo {
+            height: 180px;
+            background-image: url("/img/cover.jpg");
+            background-color: #e0e0e0;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 100px;
+            background-image: url("/img/avatar.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            bottom: -70px;
+            left: 30px;
+            border: 5px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .profile-actions {
+            padding: 10px 20px;
+            text-align: right;
+        }
+
+        .profile-actions button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-actions button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .profile-info {
+            padding: 10px 50px 20px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .profile-username {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .about-me {
+            margin-bottom: 20px;
+        }
+
+        .about-me h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .about-me p {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            word-break: break-word;
+        }
+
+        .about-me svg {
+            min-width: 20px;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .join-date,
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .link-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #e0e0e0;
+        }
+
+        .link-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Carousel Styles */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .experience-block {
+            width: calc(50% - 10px);
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .experience-block img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .experience-text {
+            padding: 15px;
+        }
+
+        .experience-text h2 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .experience-text p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            text-decoration: none;
+            z-index: 10;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .carousel-control.prev {
+            left: 10px;
+        }
+
+        .carousel-control.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .indicator.active {
+            background-color: #000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+
+            body,
+            html {
+                align-items: flex-start;
+            }
+
+            .profile-container {
+                margin: 0;
+                border-radius: 0;
+                height: 100%;
+                max-height: 100vh;
+                overflow-y: auto;
+            }
+
+            .cover-photo {
+                height: 180px;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+                bottom: -60px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .profile-info {
+                padding: 80px 40px 20px;
+            }
+
+            .profile-name {
+                font-size: 22px;
+                text-align: center;
+            }
+
+            .profile-username {
+                text-align: center;
+            }
+
+            .profile-actions {
+                text-align: center;
+                transform: translateY(70px);
+                padding: 10px;
+                width: calc(100% - 30px);
+            }
+
+            .profile-actions button {
+                margin: 5px;
+                width: 30%;
+            }
+
+            .experience-block {
+                width: calc(50% - 5px);
+            }
+
+            .carousel-inner {
+                width: 100%;
+            }
+
+            .carousel-item {
+                padding: 5px;
+            }
+
+            .carousel-control {
+                width: 15px;
+                height: 15px;
+                padding: 8px;
+            }
+
+            .experience-text h2 {
+                font-size: 14px;
+            }
+
+            .experience-text p {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-container {
+                margin: 0;
+            }
+
+            .profile-info {
+                padding: 80px 15px 15px;
+            }
+
+            .profile-name {
+                font-size: 20px;
+            }
+
+            .about-me p {
+                font-size: 14px;
+            }
+
+            .link-item {
+                font-size: 12px;
+            }
+
+            .experience-block {
+                width: calc(50% - 5px);
+                margin-bottom: 10px;
+            }
+
+            .carousel-inner {
+                width: 100%;
+            }
+
+            .carousel-control {
+                width: 12px;
+                height: 12px;
+                padding: 6px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="profile-container">
+        <div class="cover-photo">
+            <div class="profile-photo"></div>
+        </div>
+        <div class="profile-actions">
+            <nobr>
+
+                <button id="btn-page-home" onclick="go_page('home')">首頁</button>
+                <button id="btn-page-info" onclick="go_page('info')">經歷</button>
+                <button id="btn-page-project" onclick="go_page('project')">聯絡</button>
+            </nobr>
+        </div>
+        <div class="profile-info">
+
+            <div class="profile-name" onclick="show_name(this)">呱呱🐸</div>
+            <div class="profile-username">x_yu._x</div>
+
+            <!--首頁-->
+            <div id="page-home" style="display: block;">
+                <div class="about-me">
+                    <h3>關於我</h3>
+                    <p id="info-text">
+                        我是呱呱，國中生，會Python程式，熱衷於運動。我有開發Discord機器人的經驗，能製作網站。在學習和運動中，我不斷挑戰自己，提升技能。
+                    </p>
+                </div>
+                <div class="join-date">
+                    成為地球人時間: 2009年10月31日
+                </div>
+            </div>
+
+            <!--經歷-->
+            <div id="page-info" style="display: none;">
+                <div class="about-me">
+                    <h3>經歷</h3>
+                    <div class="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item">
+                                <div class="experience-block">
+                                    <img src="/img/about/sitcon-2024.png" alt="2024-SITCON">
+                                    <div class="experience-text">
+                                        <h2>n</h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+                                <div class="experience-block">
+                                    <img src="/img/about/coscup-2024.jpg" alt="2024-COSCUP">
+                                    <div class="experience-text">
+                                        <h2>n</h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="experience-block">
+                                    <img src="/img/about/coscup-2023.png"
+                                        alt="2023 - COSCUP">
+                                    <div class="experience-text">
+                                        <h2>n</h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+                                <div class="experience-block">
+                                    <img src="/img/about/THJCC.png" alt="第二屆 - THJCC">
+                                    <div class="experience-text">
+                                        <h2>n </h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="carousel-item">
+                                <div class="experience-block">
+                                    <img src="/img/about/mif.png" alt="第二屆 - THJCC">
+                                    <div class="experience-text">
+                                        <h2>n</h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+                                <div class="experience-block">
+                                    <img src="/img/about/hbot.png" alt="2023 - COSCUP">
+                                    <div class="experience-text">
+                                        <h2>n</h2>
+                                        <p>n</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="carousel-control prev">&lt;</a>
+                        <a href="#" class="carousel-control next">&gt;</a>
+                        <div class="carousel-indicators"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--專案-->
+            <div id="project-info" style="display: none;">
+                <div class="about-me">
+                    <h3>聯絡</h3>
+                    <div>
+                        <a href="https://www.threads.net/@x_yu._x" target="_blank">
+                            <div class="link-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-label="Threads" viewBox="0 0 192 192">
+                                    <script xmlns="" />
+                                    <path class="x19hqcy"
+                                        d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z" />
+                                </svg>
+                                Threads 脆
+                            </div>
+                        </a>
+                        <br>
+                        <a href="https://instagram.com/x_yu._x" target="_blank">
+                            <div class="link-item">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"><title>Instagram icon</title><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+                                Instagram 哀居
+                            </div>
+
+                        </a>
+                        <br>
+                        <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+                            <div class="link-item">
+                                <?xml version="1.0" ?>
+                                <!-- License: Logo. -->
+                                <?xml version="1.0" encoding="utf-8"?>
+<!-- License: PD. Made by Aleksey Popov: https://dribbble.com/AlekseyPopov -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M23,11.9972 C23,15.0688707 22.7080514,16.9571365 22.0247481,18.1281724 C21.3347709,19.3777602 20.5269977,19.7708297 18.8782989,19.8862992 C17.7148693,19.9542414 14.794638,20 12.0026667,20 C9.2044172,20 6.28275714,19.9542562 5.10860514,19.8855427 C3.47493151,19.7708031 2.66701263,19.37838 1.97791182,18.142374 C1.29279472,16.9480084 1,15.052042 1,12.0084 C1,8.94737365 1.29138368,7.06090428 1.97193166,5.86259947 C2.67010997,4.61046509 3.49111627,4.21325835 5.11100471,4.1184917 C6.23144506,4.04250638 8.99660854,4 12.0026667,4 C15.002263,4 17.766208,4.04252223 18.8782989,4.11790083 C20.5073007,4.21303163 21.3281267,4.60936303 22.020213,5.8580297 C22.7108012,7.06048454 23,8.93778123 23,11.9972 Z M20.283329,6.84963647 C19.9603324,6.26505017 19.7713697,6.17346202 18.752413,6.11391338 C17.6926261,6.04212137 14.954737,6 12.0026667,6 C9.04424331,6 6.3050775,6.04210674 5.2370951,6.1144916 C4.22844212,6.17352647 4.03674592,6.26627 3.71489655,6.84342165 C3.2475376,7.66638709 3,9.26898917 3,11.9972 C3,14.7270394 3.24886149,16.33852 3.71873501,17.1577995 C4.03565111,17.7261665 4.22600958,17.8186276 5.23703026,17.8897046 C6.34874254,17.9546989 9.24212825,18 12.0026667,18 C14.7569983,18 17.6489264,17.9546849 18.7500936,17.8904464 C19.7737637,17.8187098 19.961409,17.7274 20.2855157,17.1409953 C20.752236,16.3407623 21,14.7382734 21,12.0084 C21,9.25771396 20.7535449,7.66399511 20.283329,6.84963647 Z M10,9 L15,12 L10,15 L10,9 Z"/>
+</svg>
+                                有趣的東西
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="links">
+                <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+                    <div class="link-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"
+                            stroke-width="2">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <rect x="3" y="5" width="18" height="14" rx="2" stroke-width="2" stroke-linecap="round">
+                                </rect>
+                            </g>
+                        </svg>
+                        Email
+                    </div>
+                </a>
+                <a href="https://github.com/yywbadm" target="_blank">
+                    <div class="link-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        Github
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/x_yu._x" target="_blank">
+                    <div class="link-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagram
+                    </div>    
+                </a>
+                <a href="https://www.threads.net/@x_yu._x" target="_blank">
+                    <div class="link-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-threads" viewBox="0 0 16 16">
+                            <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
+                          </svg>
+                        Threads
+                    </div>              
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let home_page = document.querySelector("#page-home")
+        let info_page = document.querySelector("#page-info")
+        let project_page = document.querySelector("#project-info")
+        function go_page(page_name) {
+            home_page.style.display = "none"
+            info_page.style.display = "none"
+            project_page.style.display = "none"
+            if (page_name == "project") {
+                project_page.style.display = "block"
+                location.hash = "#project"
+            } else if (page_name == "info") {
+                info_page.style.display = "block"
+                location.hash = "#info"
+            } else {
+                home_page.style.display = "block"
+                location.hash = ""
+            }
+        }
+        function link_go() {
+            if (location.hash != "") {
+                console.log(`跳轉到 ${location.hash}`)
+                go_page(location.hash.replace("#", ""))
+            }
+        }
+        link_go()
+
+        let is_show = false
+        function show_name(t) {
+            let info_text = document.querySelector("#info-text")
+            if (is_show) {
+                is_show = false
+                t.textContent = "Hans (亨)"
+                info_text.textContent = info_text.textContent.replace("洪碩亨", "亨")
+            }
+            else {
+                is_show = true
+                t.textContent = "Hans (洪碩亨)"
+                info_text.textContent = info_text.textContent.replace("亨", "洪碩亨")
+            }
+
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousel = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevButton = document.querySelector('.carousel-control.prev');
+            const nextButton = document.querySelector('.carousel-control.next');
+            const indicatorsContainer = document.querySelector('.carousel-indicators');
+            let currentIndex = 0;
+
+            items.forEach((_, index) => {
+                const indicator = document.createElement('div');
+                indicator.classList.add('indicator');
+                if (index === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => showItem(index));
+                indicatorsContainer.appendChild(indicator);
+            });
+
+            const indicators = document.querySelectorAll('.indicator');
+
+            function showItem(index) {
+                carousel.style.transform = `translateX(-${index * 100}%)`;
+                indicators[currentIndex].classList.remove('active');
+                indicators[index].classList.add('active');
+                currentIndex = index;
+            }
+
+            function goToPrev(e) {
+                e.preventDefault();
+                let index = currentIndex - 1;
+                if (index < 0) index = items.length - 1;
+                showItem(index);
+            }
+
+            function goToNext(e) {
+                e.preventDefault();
+                let index = currentIndex + 1;
+                if (index >= items.length) index = 0;
+                showItem(index);
+            }
+
+            prevButton.addEventListener('click', goToPrev);
+            nextButton.addEventListener('click', goToNext);
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carousel.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    goToNext(e);
+                } else if (touchEndX - touchStartX > 50) {
+                    goToPrev(e);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
